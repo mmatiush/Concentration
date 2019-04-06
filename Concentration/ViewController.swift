@@ -10,13 +10,24 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var flipCount = 0 {
+        didSet {
+            flipCountLabel.text = "Flips: \(flipCount)"
+        }
     }
+    @IBOutlet var cardButtons: [UIButton]!
 
+    @IBOutlet weak var flipCountLabel: UILabel!
+    
     @IBAction func touchCard(_ sender: UIButton) {
-        flipCard(withEmoji: "👻", on: sender )
+        flipCount += 1
+        if let cardNumber = cardButtons.index(of: sender) {
+            print(cardNumber)
+            flipCard(withEmoji: "👻", on: sender )
+        }
     }
+   
+    
     
     func flipCard(withEmoji emoji: String, on button: UIButton) {
         if button.currentTitle == emoji {
