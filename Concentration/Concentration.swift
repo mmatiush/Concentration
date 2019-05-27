@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Concentration {
+struct Concentration {
     
     private(set) var cards = [Card]()
     
@@ -33,10 +33,10 @@ class Concentration {
         }
     }
 
-    func chooseCard(at index: Int) {
+    mutating func chooseCard(at index: Int) {
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyOneFaceUpCard, matchIndex != index {
-                if cards[matchIndex].idnetifier == cards[index].idnetifier {
+                if cards[matchIndex] == cards[index] {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
                 }
@@ -54,4 +54,5 @@ class Concentration {
         }
         // TODO: Shuffle the cards
     }
+    
 }

@@ -11,7 +11,7 @@ import Foundation
 struct Card {
     var isFaceup =  false
     var isMatched = false
-    var idnetifier: Int
+    private var idnetifier: Int
     
     private static var identifierFactory = 0
     private static func getUniqueIdentifier() -> Int {
@@ -24,3 +24,14 @@ struct Card {
     }
     
 }
+
+extension Card: Hashable        {
+    var hashValue: Int {
+        return idnetifier
+    }
+    
+    static func ==(lhs: Card, rhs: Card) -> Bool {
+        return lhs.idnetifier == rhs.idnetifier
+    }
+}
+
